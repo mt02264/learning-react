@@ -2,6 +2,39 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
+
 function App() {
   return (
     <div className="card">
@@ -35,19 +68,25 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill name="HTML+CSS" emoji="" backgroundColor="blue" />
-      <Skill name="Javascript" emoji="thumbs-up" backgroundColor="yellow" />
-      <Skill name="Web Design" emoji="thumbs-up" backgroundColor="green" />
-      <Skill name="Git and Github" emoji="thumbs-up" backgroundColor="red" />
-      <Skill name="React" emoji="thumbs-up" backgroundColor="skyblue" />
-      <Skill name="Svelte" emoji="thumbs-up" backgroundColor="red" />
+      {skills.map((skill) => (
+        <Skill
+          name={skill.skill}
+          backgroundColor={skill.color}
+          level={skill.level}
+        />
+      ))}
     </div>
   );
 }
-function Skill(props) {
+function Skill({ name, backgroundColor, level }) {
+  const emoji = {
+    beginner: "👶",
+    intermediate: "👍",
+    advanced: "💪",
+  };
   return (
-    <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
-      {props.name}
+    <div className="skill" style={{ backgroundColor: backgroundColor }}>
+      {name} {emoji[level]}
     </div>
   );
 }
